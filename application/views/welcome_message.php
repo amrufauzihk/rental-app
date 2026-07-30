@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RENTAL MOBIL makassar</title>
-    <link rel="icon" type="image/jpeg" href="gambar/favicon.jpeg" />
+    <link rel="icon" type="image/jpeg" href="2c501579-22cc-417a-b6cc-552020e90dbd.jpeg" />
 
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
 
     <style>
         /* ============================================
-        VARIABLES (sama seperti kode Anda, tidak saya ubah)
+    VARIABLES
         ============================================ */
         :root {
             --primary: #0a3d2e;
@@ -68,330 +68,9 @@
         }
 
         /* ============================================
-           LOGIN OVERLAY (sama seperti kode Anda)
-        ============================================ */
-        #loginOverlay {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            background: linear-gradient(165deg, #e8f0ec 0%, #f4f7f5 30%, #ffffff 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.7s ease, transform 0.7s ease;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        #loginOverlay.hidden {
-            opacity: 0;
-            transform: scale(1.05);
-            pointer-events: none;
-        }
-
-        .login-orbs {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .login-orbs .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.35;
-        }
-
-        .login-orbs .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent 70%);
-            top: -20%;
-            right: -10%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .login-orbs .orb-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(10, 61, 46, 0.06), transparent 70%);
-            bottom: -30%;
-            left: -10%;
-            animation: floatSlow 10s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(2deg);
-            }
-        }
-
-        @keyframes floatSlow {
-            0%,
-            100% {
-                transform: translateY(0px) scale(1);
-            }
-            50% {
-                transform: translateY(-30px) scale(1.03);
-            }
-        }
-
-        @keyframes pulseGold {
-            0% {
-                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.5);
-            }
-            70% {
-                box-shadow: 0 0 0 25px rgba(201, 168, 76, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
-            }
-        }
-
-        .login-card {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-radius: var(--radius);
-            padding: 48px 40px 40px;
-            max-width: 420px;
-            width: 100%;
-            box-shadow: 0 30px 80px rgba(10, 61, 46, 0.10);
-            border: 1px solid rgba(201, 168, 76, 0.08);
-            position: relative;
-            z-index: 2;
-            animation: slideUp 0.6s ease-out forwards;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.97);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .login-card .brand-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-dark);
-            font-size: 2rem;
-            margin: 0 auto 16px;
-            transition: var(--transition);
-        }
-
-        .login-card .brand-icon:hover {
-            transform: rotate(-6deg) scale(1.05);
-        }
-
-        .login-card h2 {
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: var(--primary);
-            text-align: center;
-            margin-bottom: 4px;
-        }
-
-        .login-card .subtitle {
-            text-align: center;
-            color: #5a6a62;
-            font-size: 0.9rem;
-            margin-bottom: 28px;
-        }
-
-        .login-card .subtitle .gold-text {
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        .login-card .form-label {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--primary);
-        }
-
-        .login-card .form-control {
-            border-radius: 12px;
-            padding: 12px 16px;
-            border: 2px solid rgba(10, 61, 46, 0.06);
-            background: var(--light);
-            font-size: 0.95rem;
-            transition: var(--transition);
-            box-shadow: none;
-        }
-
-        .login-card .form-control:focus {
-            border-color: var(--gold);
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.10);
-        }
-
-        .login-card .form-control.is-invalid {
-            border-color: #dc3545;
-        }
-
-        .login-card .form-control.is-invalid:focus {
-            box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.10);
-        }
-
-        .login-card .input-group-text {
-            background: var(--light);
-            border: 2px solid rgba(10, 61, 46, 0.06);
-            border-right: none;
-            border-radius: 12px 0 0 12px;
-            color: #6a7a72;
-            font-size: 1rem;
-        }
-
-        .login-card .input-group .form-control {
-            border-radius: 0 12px 12px 0;
-            border-left: none;
-        }
-
-        .login-card .input-group .form-control:focus {
-            border-left: none;
-        }
-
-        .login-card .btn-login {
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--primary-dark);
-            padding: 14px;
-            border-radius: 50px;
-            font-weight: 700;
-            border: none;
-            width: 100%;
-            transition: var(--transition);
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-            margin-top: 8px;
-        }
-
-        .login-card .btn-login::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            opacity: 0;
-            transition: var(--transition);
-            border-radius: 50px;
-        }
-
-        .login-card .btn-login:hover::before {
-            opacity: 1;
-        }
-
-        .login-card .btn-login:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: var(--shadow-gold);
-            color: var(--primary-dark);
-        }
-
-        .login-card .btn-login:active {
-            transform: scale(0.97);
-        }
-
-        .login-card .btn-login span,
-        .login-card .btn-login i {
-            position: relative;
-            z-index: 1;
-        }
-
-        .login-card .btn-login:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .login-card .error-msg {
-            color: #dc3545;
-            font-size: 0.8rem;
-            font-weight: 500;
-            min-height: 24px;
-            text-align: center;
-            margin-top: 4px;
-        }
-
-        .login-card .error-msg i {
-            margin-right: 4px;
-        }
-
-        .login-card .success-msg {
-            color: #198754;
-            font-size: 0.8rem;
-            font-weight: 500;
-            min-height: 24px;
-            text-align: center;
-            margin-top: 4px;
-        }
-
-        .login-card .toggle-link {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 0.9rem;
-            color: #5a6a62;
-        }
-
-        .login-card .toggle-link a {
-            color: var(--gold);
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .login-card .toggle-link a:hover {
-            color: var(--gold-dark);
-            text-decoration: underline;
-        }
-
-        /* Shake animation */
-        @keyframes shake {
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-            20% {
-                transform: translateX(-12px);
-            }
-            40% {
-                transform: translateX(12px);
-            }
-            60% {
-                transform: translateX(-6px);
-            }
-            80% {
-                transform: translateX(6px);
-            }
-        }
-
-        .shake {
-            animation: shake 0.4s ease-in-out;
-        }
-
-        /* ============================================
-        MAIN CONTENT (Rental Page)
+           MAIN CONTENT (Rental Page)
            ============================================ */
         #mainContent {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        #mainContent.visible {
             display: block;
             opacity: 1;
         }
@@ -672,6 +351,26 @@
             animation: float 6s ease-in-out infinite reverse;
         }
 
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        @keyframes floatSlow {
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.03);
+            }
+        }
+
         .hero-shapes {
             position: absolute;
             inset: 0;
@@ -723,7 +422,7 @@
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: rgba(201, 168, 76, 0.12);
             color: var(--gold-dark);
             padding: 6px 20px 6px 16px;
@@ -736,12 +435,24 @@
         }
 
         .hero-badge .dot {
-            width: 6px;
+            width: 8px;
             height: 8px;
             background: #22c55e;
             border-radius: 50%;
             display: inline-block;
             animation: pulseGold 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseGold {
+            0% {
+                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 25px rgba(201, 168, 76, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
+            }
         }
 
         .hero h1 {
@@ -1408,10 +1119,6 @@
                 width: 300px;
                 height: 300px;
             }
-            .login-card {
-                padding: 32px 24px 28px;
-                max-width: 380px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -1462,13 +1169,6 @@
                 width: 200px;
                 height: 200px;
             }
-            .login-card {
-                padding: 28px 20px 24px;
-                max-width: 340px;
-            }
-            .login-card h2 {
-                font-size: 1.5rem;
-            }
         }
 
         @media (max-width: 576px) {
@@ -1502,102 +1202,11 @@
             .hero-stats .stat-item p {
                 font-size: 0.7rem;
             }
-            .login-card {
-                padding: 24px 16px 20px;
-                max-width: 100%;
-                margin: 10px;
-            }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- ============================================================
-    LOGIN OVERLAY
-    ============================================================ -->
-    <div id="loginOverlay">
-        <div class="login-orbs">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-        </div>
-
-        <div class="login-card">
-            <div class="brand-icon">
-                <i class="bi bi-car-front"></i>
-            </div>
-            <h2 id="formTitle">Selamat Datang</h2>
-            <p class="subtitle" id="formSubtitle">
-                <span class="gold-text">Rental Mobil Makassar</span> — Silakan masuk
-            </p>
-
-            <!-- FORM LOGIN -->
-            <form id="loginForm" novalidate>
-                <div class="mb-3">
-                    <label for="loginEmail" class="form-label">Email / Username</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        <input type="text" class="form-control" id="loginEmail" placeholder="Masukkan email/username" required />
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="loginPassword" class="form-label">Kata Sandi</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Masukkan password" required />
-                    </div>
-                </div>
-
-                <div id="loginError" class="error-msg"></div>
-
-                <button type="submit" class="btn-login" id="loginBtn">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Masuk</span>
-                </button>
-
-                <div class="toggle-link">
-                    Belum punya akun? <a id="showRegister">Daftar sekarang</a>
-                </div>
-            </form>
-
-            <!-- FORM REGISTER -->
-            <form id="registerForm" novalidate style="display:none;">
-                <div class="mb-3">
-                    <label for="regEmail" class="form-label">Email / Username</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        <input type="text" class="form-control" id="regEmail" placeholder="contoh@email.com" required />
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="regPassword" class="form-label">Kata Sandi</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" class="form-control" id="regPassword" placeholder="Minimal 3 karakter" required />
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="regPasswordConfirm" class="form-label">Konfirmasi Kata Sandi</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                        <input type="password" class="form-control" id="regPasswordConfirm" placeholder="Ulangi kata sandi" required />
-                    </div>
-                </div>
-
-                <div id="registerError" class="error-msg"></div>
-                <div id="registerSuccess" class="success-msg"></div>
-
-                <button type="submit" class="btn-login" id="registerBtn">
-                    <i class="bi bi-person-plus"></i>
-                    <span>Daftar</span>
-                </button>
-
-                <div class="toggle-link">
-                    Sudah punya akun? <a id="showLogin">Masuk di sini</a>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <!-- ============================================================
     MAIN CONTENT (Rental Page)
@@ -1624,8 +1233,8 @@
                         <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
                         <li class="nav-item"><a class="nav-link" href="#fleet">Armada</a></li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="logoutBtn" style="color: var(--gold) !important;">
-                                <i class="bi bi-box-arrow-right"></i> Logout
+                            <a class="nav-link" href="login" style="color: var(--gold) !important;">
+                                <i class="bi bi-door-open"></i> Login
                             </a>
                         </li>
                     </ul>
@@ -1685,8 +1294,7 @@
                     </div>
                     <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800">
                         <div class="hero-image-wrapper">
-                            <!-- PERBAIKAN: ganti src dengan path yang benar -->
-                            <img src="gambar/hero-mobil.jpg" alt="Rental Mobil Makassar" class="main-image animate__animated animate__fadeInRight" />
+                            <img src="220810095640_rental-mobil-belitung-murah_2.jpeg" alt="Rental Mobil Makassar" class="main-image animate__animated animate__fadeInRight" />
                             <div class="hero-floating-card">
                                 <div class="icon-circle"><i class="bi bi-shield-check"></i></div>
                                 <div class="text">
@@ -1769,8 +1377,8 @@
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
                         <div class="fleet-card">
                             <div class="image-wrap">
-                                <!-- PERBAIKAN: ganti src -->
-                                <img src="gambar/avanza.jpg" alt="Toyota Avanza" loading="lazy" />
+                                <!-- Gambar Avanza diperbaiki dengan URL dari Wikipedia -->
+                                <img src="main_banner_toyota_new_innova_attitude_black.jpegh" alt="Toyota Avanza" loading="lazy" />
                                 <div class="overlay"></div>
                                 <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
                                 <span class="price-tag">Rp 500.000 <small>/hari</small></span>
@@ -1792,8 +1400,7 @@
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="fleet-card">
                             <div class="image-wrap">
-                                <!-- PERBAIKAN: ganti src -->
-                                <img src="gambar/xpander.jpg" alt="Mitsubishi Xpander" loading="lazy" />
+                                <img src="2.jpg" alt="Mitsubishi Xpander" loading="lazy" />
                                 <div class="overlay"></div>
                                 <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
                                 <span class="price-tag">Rp 350.000 <small>/hari</small></span>
@@ -1815,8 +1422,7 @@
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="fleet-card">
                             <div class="image-wrap">
-                                <!-- PERBAIKAN: ganti src -->
-                                <img src="gambar/brio.jpg" alt="Honda Brio" loading="lazy" />
+                                <img src="mobil brio.png" alt="Honda Brio" loading="lazy" />
                                 <div class="overlay"></div>
                                 <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
                                 <span class="price-tag">Rp 300.000 <small>/hari</small></span>
@@ -1838,8 +1444,7 @@
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="fleet-card">
                             <div class="image-wrap">
-                                <!-- PERBAIKAN: ganti src -->
-                                <img src="gambar/innova.jpg" alt="Toyota Innova Zenix" loading="lazy" />
+                                <img src="Toyota-Innova-Zenix-Indonesia-17s.jpg" alt="Toyota Innova Zenix" loading="lazy" />
                                 <div class="overlay"></div>
                                 <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
                                 <span class="price-tag">Rp 300.000 <small>/hari</small></span>
@@ -1853,6 +1458,8 @@
                                     <span><i class="bi bi-snow2"></i> AC</span>
                                     <span><i class="bi bi-suitcase"></i> 1 Koper</span>
                                     <span><i class="bi bi-calendar3"></i> 2026</span>
+                                
+                                <!--mobil 5:-->
                                 </div>
                             </div>
                         </div>
@@ -1964,212 +1571,19 @@
 
     <script>
         // ============================================================
-        // LOGIN & REGISTER LOGIC (sama seperti kode Anda)
+        // MAIN PAGE SCRIPTS (tanpa login)
         // ============================================================
-        (function() {
-            const loginOverlay = document.getElementById('loginOverlay');
-            const mainContent = document.getElementById('mainContent');
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            const loginBtn = document.getElementById('loginBtn');
-            const registerBtn = document.getElementById('registerBtn');
-            const loginError = document.getElementById('loginError');
-            const registerError = document.getElementById('registerError');
-            const registerSuccess = document.getElementById('registerSuccess');
-            const emailInput = document.getElementById('loginEmail');
-            const passwordInput = document.getElementById('loginPassword');
-            const regEmail = document.getElementById('regEmail');
-            const regPassword = document.getElementById('regPassword');
-            const regPasswordConfirm = document.getElementById('regPasswordConfirm');
-            const showRegisterLink = document.getElementById('showRegister');
-            const showLoginLink = document.getElementById('showLogin');
-            const formTitle = document.getElementById('formTitle');
-            const formSubtitle = document.getElementById('formSubtitle');
+        document.addEventListener('DOMContentLoaded', function() {
 
-            const DEFAULT_USER = 'ganking rental';
-            const DEFAULT_PASS = 'makassar rental';
-
-            if (sessionStorage.getItem('isLoggedIn') === 'true') {
-                showMainContent();
-            }
-
-            function showLoginForm() {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-                formTitle.textContent = 'Selamat Datang';
-                formSubtitle.innerHTML = '<span class="gold-text">Rental Mobil Makassar</span> — Silakan masuk';
-                loginError.textContent = '';
-                registerError.textContent = '';
-                registerSuccess.textContent = '';
-                regEmail.value = '';
-                regPassword.value = '';
-                regPasswordConfirm.value = '';
-                emailInput.value = '';
-                passwordInput.value = '';
-            }
-
-            function showRegisterForm() {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-                formTitle.textContent = 'Buat Akun Baru';
-                formSubtitle.innerHTML = '<span class="gold-text">Rental Mobil Makassar</span> — Daftar gratis';
-                loginError.textContent = '';
-                registerError.textContent = '';
-                registerSuccess.textContent = '';
-                emailInput.value = '';
-                passwordInput.value = '';
-                regEmail.value = '';
-                regPassword.value = '';
-                regPasswordConfirm.value = '';
-            }
-
-            showRegisterLink.addEventListener('click', showRegisterForm);
-            showLoginLink.addEventListener('click', showLoginForm);
-
-            registerForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const email = regEmail.value.trim();
-                const password = regPassword.value.trim();
-                const confirm = regPasswordConfirm.value.trim();
-
-                registerError.textContent = '';
-                registerSuccess.textContent = '';
-                registerBtn.disabled = true;
-                registerBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Memproses...';
-
-                if (email.length < 3) {
-                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email minimal 3 karakter';
-                    registerBtn.disabled = false;
-                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
-                    return;
-                }
-                if (password.length < 3) {
-                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Password minimal 3 karakter';
-                    registerBtn.disabled = false;
-                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
-                    return;
-                }
-                if (password !== confirm) {
-                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Konfirmasi password tidak cocok';
-                    registerBtn.disabled = false;
-                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
-                    return;
-                }
-
-                let users = JSON.parse(localStorage.getItem('rentalUsers')) || [];
-                if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
-                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email sudah terdaftar, silakan login';
-                    registerBtn.disabled = false;
-                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
-                    return;
-                }
-
-                users.push({ email: email, password: password });
-                localStorage.setItem('rentalUsers', JSON.stringify(users));
-
-                registerSuccess.textContent = '✅ Akun berhasil dibuat! Silakan login.';
-                registerBtn.disabled = false;
-                registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
-
-                regEmail.value = '';
-                regPassword.value = '';
-                regPasswordConfirm.value = '';
-
-                setTimeout(() => {
-                    showLoginForm();
-                    emailInput.value = email;
-                    passwordInput.value = '';
-                    loginError.textContent = '';
-                }, 1200);
+            // Inisialisasi AOS
+            AOS.init({
+                duration: 700,
+                once: true,
+                offset: 60,
+                easing: 'ease-out-cubic'
             });
 
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const email = emailInput.value.trim();
-                const password = passwordInput.value.trim();
-
-                loginError.textContent = '';
-                loginBtn.disabled = true;
-                loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Memproses...';
-
-                if (email.length < 3 || password.length < 3) {
-                    loginError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email & password minimal 3 karakter';
-                    emailInput.classList.add('is-invalid');
-                    passwordInput.classList.add('is-invalid');
-                    loginBtn.disabled = false;
-                    loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> <span>Masuk</span>';
-                    loginForm.closest('.login-card').classList.add('shake');
-                    setTimeout(() => {
-                        loginForm.closest('.login-card').classList.remove('shake');
-                    }, 400);
-                    return;
-                }
-
-                let users = JSON.parse(localStorage.getItem('rentalUsers')) || [];
-                let found = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
-
-                if (!found && (email === DEFAULT_USER && password === DEFAULT_PASS)) {
-                    found = { email: DEFAULT_USER, password: DEFAULT_PASS };
-                }
-
-                if (!found) {
-                    loginError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email atau password salah';
-                    emailInput.classList.add('is-invalid');
-                    passwordInput.classList.add('is-invalid');
-                    loginBtn.disabled = false;
-                    loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> <span>Masuk</span>';
-                    loginForm.closest('.login-card').classList.add('shake');
-                    setTimeout(() => {
-                        loginForm.closest('.login-card').classList.remove('shake');
-                    }, 400);
-                    return;
-                }
-
-                sessionStorage.setItem('isLoggedIn', 'true');
-                sessionStorage.setItem('userEmail', found.email);
-                showMainContent();
-                loginBtn.disabled = false;
-                loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> <span>Masuk</span>';
-            });
-
-            document.getElementById('logoutBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                sessionStorage.removeItem('isLoggedIn');
-                sessionStorage.removeItem('userEmail');
-                mainContent.classList.remove('visible');
-                setTimeout(() => {
-                    mainContent.style.display = 'none';
-                    loginOverlay.classList.remove('hidden');
-                    showLoginForm();
-                    window.scrollTo(0, 0);
-                }, 400);
-            });
-
-            function showMainContent() {
-                loginOverlay.classList.add('hidden');
-                mainContent.style.display = 'block';
-                void mainContent.offsetWidth;
-                mainContent.classList.add('visible');
-
-                setTimeout(() => {
-                    AOS.init({
-                        duration: 700,
-                        once: true,
-                        offset: 60,
-                        easing: 'ease-out-cubic'
-                    });
-                    AOS.refresh();
-                    initScrollProgress();
-                    initNavbarScroll();
-                    initSmoothScroll();
-                    initNavActive();
-                    initCounters();
-                    initQRCode();
-                }, 300);
-            }
-
+            // Scroll Progress
             function initScrollProgress() {
                 const progress = document.getElementById('scrollProgress');
                 if (!progress) return;
@@ -2180,7 +1594,9 @@
                     progress.style.width = percent + '%';
                 });
             }
+            initScrollProgress();
 
+            // Navbar scroll effect
             function initNavbarScroll() {
                 const navbar = document.querySelector('.navbar-main');
                 if (!navbar) return;
@@ -2192,7 +1608,9 @@
                     }
                 });
             }
+            initNavbarScroll();
 
+            // Smooth scroll untuk anchor links
             function initSmoothScroll() {
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function(e) {
@@ -2208,10 +1626,12 @@
                     });
                 });
             }
+            initSmoothScroll();
 
+            // Nav active state
             function initNavActive() {
                 const sections = document.querySelectorAll('section[id]');
-                const navLinks = document.querySelectorAll('.navbar-main .nav-link:not([id="logoutBtn"])');
+                const navLinks = document.querySelectorAll('.navbar-main .nav-link');
                 window.addEventListener('scroll', function() {
                     let current = '';
                     sections.forEach(section => {
@@ -2228,9 +1648,13 @@
                     });
                 });
             }
+            initNavActive();
 
+            // Counter animasi
             function initCounters() {
                 let counterTriggered = false;
+                const stats = document.querySelector('.hero-stats');
+                if (!stats) return;
 
                 function animateCounters() {
                     const counters = document.querySelectorAll('.counter[data-target]');
@@ -2251,20 +1675,20 @@
                     });
                 }
 
-                const stats = document.querySelector('.hero-stats');
-                if (stats) {
-                    const checkVisibility = function() {
-                        const rect = stats.getBoundingClientRect();
-                        if (rect.top < window.innerHeight && !counterTriggered) {
-                            counterTriggered = true;
-                            animateCounters();
-                        }
-                    };
-                    window.addEventListener('scroll', checkVisibility);
-                    setTimeout(checkVisibility, 500);
+                function checkVisibility() {
+                    const rect = stats.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && !counterTriggered) {
+                        counterTriggered = true;
+                        animateCounters();
+                    }
                 }
-            }
 
+                window.addEventListener('scroll', checkVisibility);
+                setTimeout(checkVisibility, 500);
+            }
+            initCounters();
+
+            // QR Code WhatsApp
             function initQRCode() {
                 const waModal = document.getElementById('waModal');
                 if (!waModal) return;
@@ -2304,11 +1728,12 @@
                     }
                 });
             }
+            initQRCode();
 
             console.log('🚗 Rental Mobil Makassar — Siap melayani!');
             console.log('💬 WhatsApp: +62 853-8353-9227');
 
-        })();
+        });
     </script>
 
 </body>
