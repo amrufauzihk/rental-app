@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RENTAL MOBIL makassar</title>
+    <link rel="icon" type="image/jpeg" href="gambar/favicon.jpeg" />
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+    <!-- QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
+
+    <style>
+        /* ============================================
+        VARIABLES (sama seperti kode Anda, tidak saya ubah)
+        ============================================ */
+        :root {
+            --primary: #0a3d2e;
+            --primary-light: #0f523e;
+            --primary-dark: #062318;
+            --gold: #c9a84c;
+            --gold-dark: #b8973a;
+            --gold-light: #e8d5a0;
+            --light: #f5f7f5;
+            --white: #ffffff;
+            --dark: #1a2a24;
+            --shadow: 0 15px 50px rgba(10, 61, 46, 0.10);
+            --shadow-hover: 0 25px 70px rgba(10, 61, 46, 0.18);
+            --shadow-gold: 0 20px 60px rgba(201, 168, 76, 0.25);
+            --radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        /* ============================================
+           LOGIN OVERLAY (sama seperti kode Anda)
+        ============================================ */
+        #loginOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: linear-gradient(165deg, #e8f0ec 0%, #f4f7f5 30%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        #loginOverlay.hidden {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .login-orbs {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .login-orbs .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+        }
+
+        .login-orbs .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent 70%);
+            top: -20%;
+            right: -10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .login-orbs .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(10, 61, 46, 0.06), transparent 70%);
+            bottom: -30%;
+            left: -10%;
+            animation: floatSlow 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        @keyframes floatSlow {
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.03);
+            }
+        }
+
+        @keyframes pulseGold {
+            0% {
+                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 25px rgba(201, 168, 76, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
+            }
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-radius: var(--radius);
+            padding: 48px 40px 40px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(10, 61, 46, 0.10);
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            position: relative;
+            z-index: 2;
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .login-card .brand-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin: 0 auto 16px;
+            transition: var(--transition);
+        }
+
+        .login-card .brand-icon:hover {
+            transform: rotate(-6deg) scale(1.05);
+        }
+
+        .login-card h2 {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .login-card .subtitle {
+            text-align: center;
+            color: #5a6a62;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .login-card .subtitle .gold-text {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .login-card .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .login-card .form-control {
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 2px solid rgba(10, 61, 46, 0.06);
+            background: var(--light);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: none;
+        }
+
+        .login-card .form-control:focus {
+            border-color: var(--gold);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.10);
+        }
+
+        .login-card .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+
+        .login-card .form-control.is-invalid:focus {
+            box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.10);
+        }
+
+        .login-card .input-group-text {
+            background: var(--light);
+            border: 2px solid rgba(10, 61, 46, 0.06);
+            border-right: none;
+            border-radius: 12px 0 0 12px;
+            color: #6a7a72;
+            font-size: 1rem;
+        }
+
+        .login-card .input-group .form-control {
+            border-radius: 0 12px 12px 0;
+            border-left: none;
+        }
+
+        .login-card .input-group .form-control:focus {
+            border-left: none;
+        }
+
+        .login-card .btn-login {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--primary-dark);
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            width: 100%;
+            transition: var(--transition);
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .login-card .btn-login::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50px;
+        }
+
+        .login-card .btn-login:hover::before {
+            opacity: 1;
+        }
+
+        .login-card .btn-login:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: var(--shadow-gold);
+            color: var(--primary-dark);
+        }
+
+        .login-card .btn-login:active {
+            transform: scale(0.97);
+        }
+
+        .login-card .btn-login span,
+        .login-card .btn-login i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-card .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .login-card .error-msg {
+            color: #dc3545;
+            font-size: 0.8rem;
+            font-weight: 500;
+            min-height: 24px;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .login-card .error-msg i {
+            margin-right: 4px;
+        }
+
+        .login-card .success-msg {
+            color: #198754;
+            font-size: 0.8rem;
+            font-weight: 500;
+            min-height: 24px;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .login-card .toggle-link {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: #5a6a62;
+        }
+
+        .login-card .toggle-link a {
+            color: var(--gold);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .login-card .toggle-link a:hover {
+            color: var(--gold-dark);
+            text-decoration: underline;
+        }
+
+        /* Shake animation */
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            20% {
+                transform: translateX(-12px);
+            }
+            40% {
+                transform: translateX(12px);
+            }
+            60% {
+                transform: translateX(-6px);
+            }
+            80% {
+                transform: translateX(6px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        /* ============================================
+        MAIN CONTENT (Rental Page)
+           ============================================ */
+        #mainContent {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        #mainContent.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* All the rental page styles from the user's code */
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--primary-dark);
+            padding: 14px 38px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50px;
+        }
+
+        .btn-gold:hover::before {
+            opacity: 1;
+        }
+        .btn-gold:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-gold);
+            color: var(--primary-dark);
+        }
+
+        .btn-gold span,
+        .btn-gold i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            color: var(--gold);
+            padding: 14px 38px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 2px solid var(--gold);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-outline-gold::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50px;
+            z-index: 0;
+        }
+
+        .btn-outline-gold:hover::before {
+            opacity: 1;
+        }
+        .btn-outline-gold:hover {
+            color: var(--primary-dark);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+        .btn-outline-gold span,
+        .btn-outline-gold i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-green {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff;
+            padding: 14px 38px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-green::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50px;
+        }
+
+        .btn-green:hover::before {
+            opacity: 1;
+        }
+        .btn-green:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(10, 61, 46, 0.35);
+            color: #fff;
+        }
+        .btn-green span,
+        .btn-green i {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Progress */
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.08s linear;
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+        }
+
+        /* Navbar */
+        .navbar-main {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            padding: 10px 0;
+            box-shadow: 0 1px 40px rgba(0, 0, 0, 0.04);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+        }
+
+        .navbar-main.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 50px rgba(0, 0, 0, 0.08);
+            padding: 6px 0;
+        }
+
+        .navbar-brand-custom {
+            font-weight: 900;
+            font-size: 1.6rem;
+            color: var(--primary) !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand-custom .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .navbar-brand-custom:hover .logo-icon {
+            transform: rotate(-8deg) scale(1.05);
+        }
+
+        .navbar-brand-custom .gold-text {
+            color: var(--gold);
+        }
+
+        .navbar-main .nav-link {
+            font-weight: 600;
+            color: #2d3d36 !important;
+            padding: 8px 18px;
+            position: relative;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            border-radius: 50px;
+        }
+
+        .navbar-main .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 18px;
+            right: 18px;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transform: scaleX(0);
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 4px;
+        }
+
+        .navbar-main .nav-link:hover::after,
+        .navbar-main .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .navbar-main .nav-link:hover {
+            color: var(--gold) !important;
+            background: rgba(201, 168, 76, 0.06);
+        }
+
+        .navbar-main .nav-link.active {
+            color: var(--gold) !important;
+            background: rgba(201, 168, 76, 0.08);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(165deg, #e8f0ec 0%, #f4f7f5 30%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-orbs {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-orbs .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        .hero-orbs .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent 70%);
+            top: -20%;
+            right: -10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-orbs .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(10, 61, 46, 0.08), transparent 70%);
+            bottom: -30%;
+            left: -10%;
+            animation: floatSlow 10s ease-in-out infinite;
+        }
+
+        .hero-orbs .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.10), transparent 70%);
+            top: 40%;
+            left: 30%;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-shapes .shape {
+            position: absolute;
+            border: 2px solid rgba(201, 168, 76, 0.08);
+            border-radius: 50%;
+        }
+
+        .hero-shapes .shape-1 {
+            width: 120px;
+            height: 120px;
+            top: 15%;
+            right: 8%;
+            animation: orbit 20s linear infinite;
+        }
+
+        .hero-shapes .shape-2 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 5%;
+            animation: orbitReverse 25s linear infinite;
+            border-color: rgba(201, 168, 76, 0.05);
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(120px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(120px) rotate(-360deg);
+            }
+        }
+
+        @keyframes orbitReverse {
+            0% {
+                transform: rotate(0deg) translateX(80px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg) translateX(80px) rotate(360deg);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(201, 168, 76, 0.12);
+            color: var(--gold-dark);
+            padding: 6px 20px 6px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge .dot {
+            width: 6px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulseGold 1.5s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-weight: 900;
+            font-size: 4rem;
+            color: var(--primary);
+            line-height: 1.06;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #4a5a52;
+            max-width: 480px;
+            margin-top: 16px;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid rgba(201, 168, 76, 0.12);
+        }
+
+        .hero-stats .stat-item h3 {
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        .hero-stats .stat-item h3 .counter {
+            color: var(--gold);
+            font-size: 2rem;
+        }
+        .hero-stats .stat-item p {
+            font-size: 0.85rem;
+            color: #6a7a72;
+            margin: 0;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image-wrapper .main-image {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: 0 30px 80px rgba(10, 61, 46, 0.12);
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-image-wrapper .main-image:hover {
+            transform: scale(1.01) rotate(-0.5deg);
+            box-shadow: 0 40px 100px rgba(10, 61, 46, 0.18);
+        }
+
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06), transparent 70%);
+            border-radius: var(--radius);
+            z-index: 0;
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 18px 25px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: float 3.5s ease-in-out infinite;
+            z-index: 3;
+            border: 1px solid rgba(201, 168, 76, 0.10);
+        }
+
+        .hero-floating-card .icon-circle {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.12), rgba(201, 168, 76, 0.04));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+
+        .hero-floating-card .text h6 {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .hero-floating-card .text p {
+            font-size: 0.8rem;
+            color: #7a8a82;
+            margin: 0;
+        }
+
+        .hero-floating-card-2 {
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 12px 18px;
+            border-radius: 14px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 3;
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            animation: floatSlow 4.5s ease-in-out infinite;
+        }
+
+        .hero-floating-card-2 .icon-circle {
+            width: 36px;
+            height: 36px;
+            background: rgba(34, 197, 94, 0.10);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #22c55e;
+            font-size: 1rem;
+        }
+
+        .hero-floating-card-2 .text h6 {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .hero-floating-card-2 .text p {
+            font-size: 0.7rem;
+            color: #7a8a82;
+            margin: 0;
+        }
+
+        /* Section */
+        .section-badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.10);
+            color: var(--gold-dark);
+            padding: 4px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(201, 168, 76, 0.10);
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .section-title .gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            color: #5a6a62;
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Services */
+        .services-section {
+            padding: 80px 0;
+            background: var(--white);
+            position: relative;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.10), transparent);
+        }
+
+        .service-card {
+            background: var(--light);
+            padding: 35px 25px 30px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            border: 1px solid rgba(201, 168, 76, 0.05);
+            height: 100%;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card .number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(201, 168, 76, 0.06);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .number {
+            color: rgba(201, 168, 76, 0.12);
+            transform: scale(1.1);
+        }
+
+        .service-card .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(201, 168, 76, 0.08);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .icon-box {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--primary-dark);
+            transform: rotate(8deg) scale(1.05);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.25);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(201, 168, 76, 0.15);
+        }
+
+        .service-card h5 {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: #5a6a62;
+            font-size: 0.92rem;
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        /* Fleet */
+        .fleet-section {
+            padding: 80px 0;
+            background: var(--light);
+            position: relative;
+        }
+
+        .fleet-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.08), transparent);
+        }
+
+        .fleet-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            height: 100%;
+            position: relative;
+        }
+
+        .fleet-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: var(--radius);
+            padding: 1px;
+            background: linear-gradient(135deg, transparent, rgba(201, 168, 76, 0.10), transparent);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .fleet-card:hover::before {
+            opacity: 1;
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-14px) scale(1.01);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(201, 168, 76, 0.10);
+        }
+
+        .fleet-card .image-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #e8f0ec;
+        }
+
+        .fleet-card .image-wrap img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .fleet-card:hover .image-wrap img {
+            transform: scale(1.08);
+        }
+
+        .fleet-card .image-wrap .tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--primary-dark);
+            padding: 3px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .fleet-card .image-wrap .price-tag {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            background: rgba(10, 61, 46, 0.92);
+            backdrop-filter: blur(12px);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .fleet-card .image-wrap .price-tag small {
+            font-weight: 400;
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        .fleet-card .image-wrap .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(10, 61, 46, 0.20) 0%, transparent 40%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .fleet-card:hover .image-wrap .overlay {
+            opacity: 1;
+        }
+
+        .fleet-card .body {
+            padding: 22px 24px 26px;
+        }
+
+        .fleet-card .body .car-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .fleet-card .body .car-desc {
+            color: #5a6a62;
+            font-size: 0.85rem;
+            margin: 6px 0 10px;
+            line-height: 1.5;
+        }
+
+        .fleet-card .body .specs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin: 10px 0 14px;
+        }
+
+        .fleet-card .body .specs span {
+            background: var(--light);
+            padding: 3px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: #4a5a52;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .fleet-card .body .specs span i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+
+        .fleet-card:hover .body .specs span {
+            background: rgba(201, 168, 76, 0.06);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.15), transparent);
+        }
+
+        .footer h5 {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+
+        .footer .brand {
+            font-weight: 900;
+            font-size: 1.7rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer .brand .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+
+        .footer .brand .gold-text {
+            color: var(--gold);
+        }
+
+        .footer .desc {
+            max-width: 280px;
+            margin-top: 12px;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .footer .link {
+            color: rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .footer .link:hover {
+            color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        .footer .social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+            margin-right: 6px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .footer .social a:hover {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--primary-dark);
+            transform: translateY(-4px);
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(201, 168, 76, 0.15);
+        }
+
+        .footer .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .contact-item i {
+            color: var(--gold);
+            width: 18px;
+            flex-shrink: 0;
+        }
+
+        .footer .contact-item .map-link {
+            color: var(--gold);
+            text-decoration: underline;
+            transition: var(--transition);
+        }
+
+        .footer .contact-item .map-link:hover {
+            color: var(--gold-dark);
+        }
+
+        .footer .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 24px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .footer .copyright .heart {
+            color: var(--gold);
+            display: inline-block;
+            animation: pulseGold 1.5s ease-in-out infinite;
+        }
+
+        /* Toast */
+        .toast-container-custom {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            animation: slideUp 0.5s ease-out forwards;
+        }
+
+        .toast-custom {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 14px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid var(--gold);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .toast-custom i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* Modal */
+        .modal-content {
+            border-radius: var(--radius);
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero {
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .section-title {
+                font-size: 2.4rem;
+            }
+            .hero-floating-card,
+            .hero-floating-card-2 {
+                display: none;
+            }
+            .hero-shapes .shape {
+                display: none;
+            }
+            .hero-orbs .orb-1 {
+                width: 300px;
+                height: 300px;
+            }
+            .login-card {
+                padding: 32px 24px 28px;
+                max-width: 380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                padding: 100px 0 40px;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero p {
+                margin: 16px auto 0;
+                max-width: 100%;
+            }
+            .hero-stats {
+                justify-content: center;
+                gap: 24px;
+            }
+            .hero-stats .stat-item h3 {
+                font-size: 1.6rem;
+            }
+            .hero-stats .stat-item h3 .counter {
+                font-size: 1.6rem;
+            }
+            .hero-image-wrapper .main-image {
+                margin-top: 30px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .fleet-card .image-wrap img {
+                height: 180px;
+            }
+            .navbar-brand-custom {
+                font-size: 1.3rem;
+            }
+            .navbar-brand-custom .logo-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+            .hero-orbs .orb-1 {
+                width: 200px;
+                height: 200px;
+                top: -10%;
+            }
+            .hero-orbs .orb-2 {
+                width: 200px;
+                height: 200px;
+            }
+            .login-card {
+                padding: 28px 20px 24px;
+                max-width: 340px;
+            }
+            .login-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero .btn-gold,
+            .hero .btn-outline-gold {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            .fleet-card .image-wrap img {
+                height: 160px;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .hero-stats {
+                gap: 16px;
+            }
+            .hero-stats .stat-item h3 {
+                font-size: 1.3rem;
+            }
+            .hero-stats .stat-item h3 .counter {
+                font-size: 1.3rem;
+            }
+            .hero-stats .stat-item p {
+                font-size: 0.7rem;
+            }
+            .login-card {
+                padding: 24px 16px 20px;
+                max-width: 100%;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    LOGIN OVERLAY
+    ============================================================ -->
+    <div id="loginOverlay">
+        <div class="login-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+
+        <div class="login-card">
+            <div class="brand-icon">
+                <i class="bi bi-car-front"></i>
+            </div>
+            <h2 id="formTitle">Selamat Datang</h2>
+            <p class="subtitle" id="formSubtitle">
+                <span class="gold-text">Rental Mobil Makassar</span> — Silakan masuk
+            </p>
+
+            <!-- FORM LOGIN -->
+            <form id="loginForm" novalidate>
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email / Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="loginEmail" placeholder="Masukkan email/username" required />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Kata Sandi</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Masukkan password" required />
+                    </div>
+                </div>
+
+                <div id="loginError" class="error-msg"></div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Masuk</span>
+                </button>
+
+                <div class="toggle-link">
+                    Belum punya akun? <a id="showRegister">Daftar sekarang</a>
+                </div>
+            </form>
+
+            <!-- FORM REGISTER -->
+            <form id="registerForm" novalidate style="display:none;">
+                <div class="mb-3">
+                    <label for="regEmail" class="form-label">Email / Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="regEmail" placeholder="contoh@email.com" required />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="regPassword" class="form-label">Kata Sandi</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" id="regPassword" placeholder="Minimal 3 karakter" required />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="regPasswordConfirm" class="form-label">Konfirmasi Kata Sandi</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                        <input type="password" class="form-control" id="regPasswordConfirm" placeholder="Ulangi kata sandi" required />
+                    </div>
+                </div>
+
+                <div id="registerError" class="error-msg"></div>
+                <div id="registerSuccess" class="success-msg"></div>
+
+                <button type="submit" class="btn-login" id="registerBtn">
+                    <i class="bi bi-person-plus"></i>
+                    <span>Daftar</span>
+                </button>
+
+                <div class="toggle-link">
+                    Sudah punya akun? <a id="showLogin">Masuk di sini</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    MAIN CONTENT (Rental Page)
+    ============================================================ -->
+    <div id="mainContent">
+        <!-- Scroll Progress -->
+        <div id="scrollProgress"></div>
+
+        <!-- ============================================================
+        NAVBAR
+        ============================================================ -->
+        <nav class="navbar-main navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand-custom" href="#">
+                    <span class="logo-icon"><i class="bi bi-car-front"></i></span>
+                    Rental Mobil <span class="gold-text">Makassar</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link active" href="#home">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#fleet">Armada</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutBtn" style="color: var(--gold) !important;">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
+        <section class="hero" id="home">
+            <div class="hero-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+            </div>
+
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+                        <div class="hero-badge animate__animated animate__fadeInUp">
+                            <span class="dot"></span> 500+ Pelanggan Puas • 4.9/5 Rating
+                        </div>
+                        <h1 class="animate__animated animate__fadeInUp">
+                            Rental Mobil <br><span class="highlight">Makassar</span>
+                        </h1>
+                        <p class="animate__animated animate__fadeInUp animate__delay-1s">
+                            Sewa mobil Avanza, Xpander, atau Brio dengan harga terjangkau.
+                            Antar jemput gratis, driver profesional, dan armada terawat.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+                            <a href="#fleet" class="btn-gold">
+                                <i class="bi bi-grid-3x3-gap"></i> <span>Lihat Armada</span>
+                            </a>
+                            <a href="#layanan" class="btn-outline-gold">
+                                <i class="bi bi-info-circle"></i> <span>Layanan</span>
+                            </a>
+                        </div>
+                        <div class="hero-stats animate__animated animate__fadeInUp animate__delay-3s">
+                            <div class="stat-item">
+                                <h3><span class="counter" data-target="3">0</span><span>+</span></h3>
+                                <p>Pilihan Mobil</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3><span class="counter" data-target="500">0</span><span>+</span></h3>
+                                <p>Pelanggan Puas</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>4.9<span class="counter" style="font-size:1.3rem;">⭐</span></h3>
+                                <p>Rating Terbaik</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800">
+                        <div class="hero-image-wrapper">
+                            <!-- PERBAIKAN: ganti src dengan path yang benar -->
+                            <img src="gambar/hero-mobil.jpg" alt="Rental Mobil Makassar" class="main-image animate__animated animate__fadeInRight" />
+                            <div class="hero-floating-card">
+                                <div class="icon-circle"><i class="bi bi-shield-check"></i></div>
+                                <div class="text">
+                                    <h6>Garansi Kepuasan</h6>
+                                    <p>Mobil bersih & terawat</p>
+                                </div>
+                            </div>
+                            <div class="hero-floating-card-2">
+                                <div class="icon-circle"><i class="bi bi-clock"></i></div>
+                                <div class="text">
+                                    <h6>24 Jam</h6>
+                                    <p>Layanan siap</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        LAYANAN
+        ============================================================ -->
+        <section class="services-section" id="layanan">
+            <div class="container">
+                <div class="text-center" data-aos="fade-up">
+                    <span class="section-badge"><i class="bi bi-grid-3x3-gap-fill"></i> Layanan Premium</span>
+                    <h2 class="section-title">Kenapa Harus <span class="gold">Kami</span>?</h2>
+                    <p class="section-desc">Kami hadir dengan layanan terbaik untuk kebutuhan transportasi Anda</p>
+                </div>
+                <div class="row g-4 mt-3">
+                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="0">
+                        <div class="service-card">
+                            <span class="number">01</span>
+                            <div class="icon-box"><i class="bi bi-clock-history"></i></div>
+                            <h5>Sewa per Jam</h5>
+                            <p>Fleksibel! Sewa per jam dengan tarif transparan. Cocok untuk keperluan dadakan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-card">
+                            <span class="number">02</span>
+                            <div class="icon-box"><i class="bi bi-calendar-week"></i></div>
+                            <h5>Sewa Harian</h5>
+                            <p>Harga spesial untuk sewa harian. Bebas kilometer untuk perjalanan bisnis atau liburan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-card">
+                            <span class="number">03</span>
+                            <div class="icon-box"><i class="bi bi-person-check"></i></div>
+                            <h5>Antar Jemput</h5>
+                            <p>Driver profesional siap antar jemput ke bandara, hotel, atau lokasi manapun di Makassar.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-card">
+                            <span class="number">04</span>
+                            <div class="icon-box"><i class="bi bi-shield-check"></i></div>
+                            <h5>Asuransi Lengkap</h5>
+                            <p>Semua mobil terlindungi asuransi komprehensif. Perjalanan Anda aman dan nyaman.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        ARMADA
+        ============================================================ -->
+        <section class="fleet-section" id="fleet">
+            <div class="container">
+                <div class="text-center" data-aos="fade-up">
+                    <span class="section-badge"><i class="bi bi-car-front"></i> Armada Kami</span>
+                    <h2 class="section-title">Pilihan <span class="gold">Mobil</span> Terbaik</h2>
+                    <p class="section-desc">Pilih mobil sesuai kebutuhan Anda: Avanza, Xpander, atau Brio</p>
+                </div>
+                <div class="row g-4 mt-3">
+                    <!-- Mobil 1: Avanza -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                        <div class="fleet-card">
+                            <div class="image-wrap">
+                                <!-- PERBAIKAN: ganti src -->
+                                <img src="gambar/avanza.jpg" alt="Toyota Avanza" loading="lazy" />
+                                <div class="overlay"></div>
+                                <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
+                                <span class="price-tag">Rp 500.000 <small>/hari</small></span>
+                            </div>
+                            <div class="body">
+                                <h5 class="car-name">Toyota Avanza</h5>
+                                <p class="car-desc">Mobil keluarga nyaman dengan kabin luas dan irit bahan bakar.</p>
+                                <div class="specs">
+                                    <span><i class="bi bi-gear"></i> Manual / Matic</span>
+                                    <span><i class="bi bi-people"></i> 6 Kursi</span>
+                                    <span><i class="bi bi-snow2"></i> AC</span>
+                                    <span><i class="bi bi-suitcase"></i> 5 Koper</span>
+                                    <span><i class="bi bi-calendar3"></i> 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobil 2: Xpander -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="fleet-card">
+                            <div class="image-wrap">
+                                <!-- PERBAIKAN: ganti src -->
+                                <img src="gambar/xpander.jpg" alt="Mitsubishi Xpander" loading="lazy" />
+                                <div class="overlay"></div>
+                                <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
+                                <span class="price-tag">Rp 350.000 <small>/hari</small></span>
+                            </div>
+                            <div class="body">
+                                <h5 class="car-name">Mitsubishi Xpander</h5>
+                                <p class="car-desc">Mobil premium dengan desain modern, nyaman untuk perjalanan jauh.</p>
+                                <div class="specs">
+                                    <span><i class="bi bi-gear"></i> Matic</span>
+                                    <span><i class="bi bi-people"></i> 7 Kursi</span>
+                                    <span><i class="bi bi-snow2"></i> AC</span>
+                                    <span><i class="bi bi-suitcase"></i> 3 Koper</span>
+                                    <span><i class="bi bi-calendar3"></i> 2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobil 3: Brio -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="fleet-card">
+                            <div class="image-wrap">
+                                <!-- PERBAIKAN: ganti src -->
+                                <img src="gambar/brio.jpg" alt="Honda Brio" loading="lazy" />
+                                <div class="overlay"></div>
+                                <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
+                                <span class="price-tag">Rp 300.000 <small>/hari</small></span>
+                            </div>
+                            <div class="body">
+                                <h5 class="car-name">Honda Brio</h5>
+                                <p class="car-desc">Mobil compact yang lincah, cocok untuk perjalanan di dalam kota.</p>
+                                <div class="specs">
+                                    <span><i class="bi bi-gear"></i> Manual / Matic</span>
+                                    <span><i class="bi bi-people"></i> 5 Kursi</span>
+                                    <span><i class="bi bi-snow2"></i> AC</span>
+                                    <span><i class="bi bi-suitcase"></i> 1 Koper</span>
+                                    <span><i class="bi bi-calendar3"></i> 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobil 4: Innova Zenix -->
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="fleet-card">
+                            <div class="image-wrap">
+                                <!-- PERBAIKAN: ganti src -->
+                                <img src="gambar/innova.jpg" alt="Toyota Innova Zenix" loading="lazy" />
+                                <div class="overlay"></div>
+                                <span class="tag"><i class="bi bi-check-circle-fill"></i> TERSEDIA</span>
+                                <span class="price-tag">Rp 300.000 <small>/hari</small></span>
+                            </div>
+                            <div class="body">
+                                <h5 class="car-name">Innova Zenix</h5>
+                                <p class="car-desc">Mobil compact yang lincah, cocok untuk perjalanan di kota.</p>
+                                <div class="specs">
+                                    <span><i class="bi bi-gear"></i> Manual / Matic</span>
+                                    <span><i class="bi bi-people"></i> 5 Kursi</span>
+                                    <span><i class="bi bi-snow2"></i> AC</span>
+                                    <span><i class="bi bi-suitcase"></i> 1 Koper</span>
+                                    <span><i class="bi bi-calendar3"></i> 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        MODAL QR CODE WHATSAPP
+        ============================================================ -->
+        <div class="modal fade" id="waModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content text-center p-4" style="border-radius: var(--radius);">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold mx-auto" style="color: var(--primary);">
+                            <i class="bi bi-qr-code" style="color: var(--gold);"></i> Scan QR Code
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted small">Scan dengan kamera HP untuk chat WhatsApp</p>
+                        <div id="waQR" class="mx-auto"></div>
+                        <div class="mt-3">
+                            <a href="https://wa.me/6285383539227" target="_blank" rel="noopener noreferrer" class="btn-gold w-100" style="justify-content:center;">
+                                <i class="bi bi-whatsapp"></i> <span>Buka WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        FOOTER
+        ============================================================ -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="brand">
+                            <span class="logo-icon"><i class="bi bi-car-front"></i></span>
+                            Rental Mobil <span class="gold-text">Makassar</span>
+                        </div>
+                        <p class="desc">
+                            Rental mobil terpercaya di Makassar. Siap melayani kebutuhan transportasi Anda
+                            24 jam dengan armada berkualitas dan harga terjangkau.
+                        </p>
+                        <div class="social mt-3">
+                            <a href="https://www.instagram.com/mobil_rental_makassar_murah?igsh=dnZvNHA0ZW1uOGF4" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#waModal"><i class="bi bi-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5>Menu</h5>
+                        <a href="#home" class="link">Beranda</a>
+                        <a href="#layanan" class="link">Layanan</a>
+                        <a href="#fleet" class="link">Armada</a>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Kontak Kami</h5>
+                        <div class="contact-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <a href="https://maps.app.goo.gl/k1eQFZUqfKJj3iPV8" target="_blank" rel="noopener noreferrer" class="map-link">
+                                Jl. Lumbung Mart Goaria, Sudiang
+                            </a>
+                            <a href="https://maps.app.goo.gl/k1eQFZUqfKJj3iPV8" target="_blank" rel="noopener noreferrer" class="btn-gold" style="padding: 2px 12px; font-size: 0.7rem; border-radius: 50px;">
+                                <i class="bi bi-map"></i> Peta
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-clock"></i>
+                            <span>Senin - Sabtu : 24 Jam</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Hubungi</h5>
+                        <div class="contact-item">
+                            <i class="bi bi-whatsapp" style="color: #25D366;"></i>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#waModal" style="color: rgba(255,255,255,0.6); transition: var(--transition);">
+                                +62 853-8353-9227
+                            </a>
+                        </div>
+                        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span style="background: rgba(255,255,255,0.04); padding: 2px 12px; border-radius: 50px; font-size: 0.7rem; color: rgba(255,255,255,0.3);">
+                                <i class="bi bi-check-circle-fill" style="color: #22c55e;"></i> Siap 24 Jam
+                            </span>
+                            <span style="background: rgba(255,255,255,0.04); padding: 2px 12px; border-radius: 50px; font-size: 0.7rem; color: rgba(255,255,255,0.3);">
+                                <i class="bi bi-shield-check" style="color: var(--gold);"></i> Terpercaya
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    &copy; 2026 <strong>Rental Mobil Makassar</strong>.
+                    <span class="heart"><i class="bi bi-heart-fill"></i></span> untuk pelanggan setia silahkan pesan
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+
+    <script>
+        // ============================================================
+        // LOGIN & REGISTER LOGIC (sama seperti kode Anda)
+        // ============================================================
+        (function() {
+            const loginOverlay = document.getElementById('loginOverlay');
+            const mainContent = document.getElementById('mainContent');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            const loginError = document.getElementById('loginError');
+            const registerError = document.getElementById('registerError');
+            const registerSuccess = document.getElementById('registerSuccess');
+            const emailInput = document.getElementById('loginEmail');
+            const passwordInput = document.getElementById('loginPassword');
+            const regEmail = document.getElementById('regEmail');
+            const regPassword = document.getElementById('regPassword');
+            const regPasswordConfirm = document.getElementById('regPasswordConfirm');
+            const showRegisterLink = document.getElementById('showRegister');
+            const showLoginLink = document.getElementById('showLogin');
+            const formTitle = document.getElementById('formTitle');
+            const formSubtitle = document.getElementById('formSubtitle');
+
+            const DEFAULT_USER = 'ganking rental';
+            const DEFAULT_PASS = 'makassar rental';
+
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                showMainContent();
+            }
+
+            function showLoginForm() {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                formTitle.textContent = 'Selamat Datang';
+                formSubtitle.innerHTML = '<span class="gold-text">Rental Mobil Makassar</span> — Silakan masuk';
+                loginError.textContent = '';
+                registerError.textContent = '';
+                registerSuccess.textContent = '';
+                regEmail.value = '';
+                regPassword.value = '';
+                regPasswordConfirm.value = '';
+                emailInput.value = '';
+                passwordInput.value = '';
+            }
+
+            function showRegisterForm() {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                formTitle.textContent = 'Buat Akun Baru';
+                formSubtitle.innerHTML = '<span class="gold-text">Rental Mobil Makassar</span> — Daftar gratis';
+                loginError.textContent = '';
+                registerError.textContent = '';
+                registerSuccess.textContent = '';
+                emailInput.value = '';
+                passwordInput.value = '';
+                regEmail.value = '';
+                regPassword.value = '';
+                regPasswordConfirm.value = '';
+            }
+
+            showRegisterLink.addEventListener('click', showRegisterForm);
+            showLoginLink.addEventListener('click', showLoginForm);
+
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = regEmail.value.trim();
+                const password = regPassword.value.trim();
+                const confirm = regPasswordConfirm.value.trim();
+
+                registerError.textContent = '';
+                registerSuccess.textContent = '';
+                registerBtn.disabled = true;
+                registerBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Memproses...';
+
+                if (email.length < 3) {
+                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email minimal 3 karakter';
+                    registerBtn.disabled = false;
+                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
+                    return;
+                }
+                if (password.length < 3) {
+                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Password minimal 3 karakter';
+                    registerBtn.disabled = false;
+                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
+                    return;
+                }
+                if (password !== confirm) {
+                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Konfirmasi password tidak cocok';
+                    registerBtn.disabled = false;
+                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
+                    return;
+                }
+
+                let users = JSON.parse(localStorage.getItem('rentalUsers')) || [];
+                if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+                    registerError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email sudah terdaftar, silakan login';
+                    registerBtn.disabled = false;
+                    registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
+                    return;
+                }
+
+                users.push({ email: email, password: password });
+                localStorage.setItem('rentalUsers', JSON.stringify(users));
+
+                registerSuccess.textContent = '✅ Akun berhasil dibuat! Silakan login.';
+                registerBtn.disabled = false;
+                registerBtn.innerHTML = '<i class="bi bi-person-plus"></i> <span>Daftar</span>';
+
+                regEmail.value = '';
+                regPassword.value = '';
+                regPasswordConfirm.value = '';
+
+                setTimeout(() => {
+                    showLoginForm();
+                    emailInput.value = email;
+                    passwordInput.value = '';
+                    loginError.textContent = '';
+                }, 1200);
+            });
+
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                loginError.textContent = '';
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Memproses...';
+
+                if (email.length < 3 || password.length < 3) {
+                    loginError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email & password minimal 3 karakter';
+                    emailInput.classList.add('is-invalid');
+                    passwordInput.classList.add('is-invalid');
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> <span>Masuk</span>';
+                    loginForm.closest('.login-card').classList.add('shake');
+                    setTimeout(() => {
+                        loginForm.closest('.login-card').classList.remove('shake');
+                    }, 400);
+                    return;
+                }
+
+                let users = JSON.parse(localStorage.getItem('rentalUsers')) || [];
+                let found = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+                if (!found && (email === DEFAULT_USER && password === DEFAULT_PASS)) {
+                    found = { email: DEFAULT_USER, password: DEFAULT_PASS };
+                }
+
+                if (!found) {
+                    loginError.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email atau password salah';
+                    emailInput.classList.add('is-invalid');
+                    passwordInput.classList.add('is-invalid');
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> <span>Masuk</span>';
+                    loginForm.closest('.login-card').classList.add('shake');
+                    setTimeout(() => {
+                        loginForm.closest('.login-card').classList.remove('shake');
+                    }, 400);
+                    return;
+                }
+
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('userEmail', found.email);
+                showMainContent();
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> <span>Masuk</span>';
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('userEmail');
+                mainContent.classList.remove('visible');
+                setTimeout(() => {
+                    mainContent.style.display = 'none';
+                    loginOverlay.classList.remove('hidden');
+                    showLoginForm();
+                    window.scrollTo(0, 0);
+                }, 400);
+            });
+
+            function showMainContent() {
+                loginOverlay.classList.add('hidden');
+                mainContent.style.display = 'block';
+                void mainContent.offsetWidth;
+                mainContent.classList.add('visible');
+
+                setTimeout(() => {
+                    AOS.init({
+                        duration: 700,
+                        once: true,
+                        offset: 60,
+                        easing: 'ease-out-cubic'
+                    });
+                    AOS.refresh();
+                    initScrollProgress();
+                    initNavbarScroll();
+                    initSmoothScroll();
+                    initNavActive();
+                    initCounters();
+                    initQRCode();
+                }, 300);
+            }
+
+            function initScrollProgress() {
+                const progress = document.getElementById('scrollProgress');
+                if (!progress) return;
+                window.addEventListener('scroll', function() {
+                    const scrollTop = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const percent = (scrollTop / docHeight) * 100;
+                    progress.style.width = percent + '%';
+                });
+            }
+
+            function initNavbarScroll() {
+                const navbar = document.querySelector('.navbar-main');
+                if (!navbar) return;
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 80) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            function initSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        const href = this.getAttribute('href');
+                        if (href === '#') return;
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const offset = 72;
+                            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                            window.scrollTo({ top, behavior: 'smooth' });
+                        }
+                    });
+                });
+            }
+
+            function initNavActive() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.navbar-main .nav-link:not([id="logoutBtn"])');
+                window.addEventListener('scroll', function() {
+                    let current = '';
+                    sections.forEach(section => {
+                        const top = section.offsetTop - 100;
+                        if (window.scrollY >= top) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + current) {
+                            link.classList.add('active');
+                        }
+                    });
+                });
+            }
+
+            function initCounters() {
+                let counterTriggered = false;
+
+                function animateCounters() {
+                    const counters = document.querySelectorAll('.counter[data-target]');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        if (isNaN(target)) return;
+                        let current = 0;
+                        const increment = Math.ceil(target / 60);
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = current;
+                            }
+                        }, 25);
+                    });
+                }
+
+                const stats = document.querySelector('.hero-stats');
+                if (stats) {
+                    const checkVisibility = function() {
+                        const rect = stats.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && !counterTriggered) {
+                            counterTriggered = true;
+                            animateCounters();
+                        }
+                    };
+                    window.addEventListener('scroll', checkVisibility);
+                    setTimeout(checkVisibility, 500);
+                }
+            }
+
+            function initQRCode() {
+                const waModal = document.getElementById('waModal');
+                if (!waModal) return;
+
+                function generateQR() {
+                    const container = document.getElementById('waQR');
+                    if (!container) return;
+                    container.innerHTML = '';
+                    if (typeof QRCode === 'undefined') {
+                        container.innerHTML =
+                            '<p class="text-danger">Gagal memuat QR Code, silakan refresh halaman.</p>';
+                        return;
+                    }
+                    try {
+                        new QRCode(container, {
+                            text: 'https://wa.me/6285383539227',
+                            width: 200,
+                            height: 200,
+                            colorDark: '#0a3d2e',
+                            colorLight: '#ffffff',
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    } catch (e) {
+                        container.innerHTML = '<p class="text-danger">Terjadi kesalahan saat membuat QR Code.</p>';
+                        console.error(e);
+                    }
+                }
+
+                waModal.addEventListener('show.bs.modal', function() {
+                    setTimeout(generateQR, 200);
+                });
+
+                waModal.addEventListener('shown.bs.modal', function() {
+                    const container = document.getElementById('waQR');
+                    if (container && container.innerHTML === '') {
+                        generateQR();
+                    }
+                });
+            }
+
+            console.log('🚗 Rental Mobil Makassar — Siap melayani!');
+            console.log('💬 WhatsApp: +62 853-8353-9227');
+
+        })();
+    </script>
+
+</body>
+</html>
